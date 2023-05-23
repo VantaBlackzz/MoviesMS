@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
+use App\Entity\Genres;
 use App\Entity\Movie;
 use App\Model\MovieDetails;
+use App\Model\Genres as GenresModel;
 
 class MovieMapper
 {
@@ -14,10 +16,18 @@ class MovieMapper
         $details
             ->setTitle($movie->getTitle())
             ->setDescription($movie->getDescription())
-            ->setGenre($movie->getGenre())
             ->setDuration($movie->getDuration())
             ->setRating($movie->getRating())
             ->setYear($movie->getYear())
             ->setTagline($movie->getTagline());
+    }
+
+    public static function mapGenres(Movie $movie): array
+    {
+        return $movie->getGenres()
+            ->map(fn (Genres $genres) => new GenresModel(
+                $genres->getName()
+            ))
+            ->toArray();
     }
 }

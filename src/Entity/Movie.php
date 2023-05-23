@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
@@ -15,30 +17,58 @@ class Movie
     #[ORM\Column(type: 'integer')]
     private ?int $id;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private string $title;
 
-    #[ORM\Column(length: 1000)]
+    #[ORM\Column(type: 'text', nullable: false)]
     private string $description;
 
-    #[ORM\Column(length: 255)]
-    private string $genre;
+    /**
+     * @var Collection<Genres>
+     */
+    #[ORM\ManyToMany(targetEntity: Genres::class)]
+    #[ORM\JoinTable(name: 'movie_to_genres')]
+    private Collection $genres;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private string $tagline;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', nullable: false)]
     private int $year;
 
     #[ORM\Column(type: 'float')]
     private float $rating;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', nullable: false)]
     private int $duration;
+
+    public function __construct()
+    {
+        $this->genres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return Collection<Genres>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    /**
+     * @param Collection<Genres> $genres
+     * @return $this
+     */
+    public function setGenres(Collection $genres): self
+    {
+        $this->genres = $genres;
+
+        return $this;
     }
 
     public function getTitle(): string
@@ -61,18 +91,6 @@ class Movie
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getGenre(): string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): self
-    {
-        $this->genre = $genre;
 
         return $this;
     }

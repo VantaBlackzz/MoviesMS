@@ -23,6 +23,6 @@ class MovieService
 
         MovieMapper::map($movie, $movieDetails);
 
-        return $movieDetails;
+        return $movieDetails->setGenres(MovieMapper::mapGenres($movie));
     }
 }

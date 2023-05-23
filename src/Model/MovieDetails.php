@@ -10,7 +10,10 @@ class MovieDetails
 
     private string $description;
 
-    private string $genre;
+    /**
+     * @var Genres[]
+     */
+    private array $genres;
 
     private string $tagline;
 
@@ -28,6 +31,7 @@ class MovieDetails
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -39,17 +43,19 @@ class MovieDetails
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
-    public function getGenre(): string
+    public function getGenres(): array
     {
-        return $this->genre;
+        return $this->genres;
     }
 
-    public function setGenre(string $genre): self
+    public function setGenres(array $genres): self
     {
-        $this->genre = $genre;
+        $this->genres = $genres;
+
         return $this;
     }
 
@@ -61,6 +67,7 @@ class MovieDetails
     public function setTagline(string $tagline): self
     {
         $this->tagline = $tagline;
+
         return $this;
     }
 
@@ -72,6 +79,7 @@ class MovieDetails
     public function setYear(int $year): self
     {
         $this->year = $year;
+
         return $this;
     }
 
@@ -83,6 +91,7 @@ class MovieDetails
     public function setRating(float $rating): self
     {
         $this->rating = $rating;
+
         return $this;
     }
 
@@ -94,6 +103,7 @@ class MovieDetails
     public function setDuration(int $duration): self
     {
         $this->duration = $duration;
+
         return $this;
     }
 }
