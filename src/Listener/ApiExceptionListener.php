@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Listener;
 
-use App\Model\ErrorDebugDetails;
-use App\Model\ErrorResponse;
-use App\Service\ExceptionHandler\ExceptionMapping;
 use App\Service\ExceptionHandler\ExceptionMappingResolver;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
+use App\Service\ExceptionHandler\ExceptionMapping;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use App\Model\ErrorDebugDetails;
+use App\Model\ErrorResponse;
+use Psr\Log\LoggerInterface;
 
 class ApiExceptionListener
 {

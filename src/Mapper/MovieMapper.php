@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
+use App\Model\Genre as GenreModel;
+use App\RequestDTO\NewMovieRequest;
+use App\Model\MovieDetails;
 use App\Entity\Genres;
 use App\Entity\Movie;
-use App\Model\MovieDetails;
-use App\Model\Genres as GenresModel;
 
 class MovieMapper
 {
-    public static function map(Movie $movie, MovieDetails $details): void
+    public static function mapToModel(Movie $movie, MovieDetails $details): void
     {
         $details
             ->setTitle($movie->getTitle())
@@ -22,10 +23,22 @@ class MovieMapper
             ->setTagline($movie->getTagline());
     }
 
+    public static function mapToEntity(NewMovieRequest $request, Movie $movie): void
+    {
+        $movie
+            ->setTitle($request->getTitle())
+            ->setDescription($request->getDescription())
+            ->setDuration($request->getDuration())
+            ->setRating($request->getRating())
+            ->setYear($request->getYear())
+            ->setTagline($request->getTagline());
+    }
+
     public static function mapGenres(Movie $movie): array
     {
         return $movie->getGenres()
-            ->map(fn (Genres $genres) => new GenresModel(
+            ->map(fn (Genres $genres) => new GenreModel(
+                $genres->getId(),
                 $genres->getName()
             ))
             ->toArray();

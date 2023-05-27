@@ -11,7 +11,7 @@ class MovieDetails
     private string $description;
 
     /**
-     * @var Genres[]
+     * @var Genre[]
      */
     private array $genres;
 

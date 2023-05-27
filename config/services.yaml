@@ -3,6 +3,8 @@
 parameters:
     exceptions:
         App\Exception\MovieNotFoundException: { code: 404, hidden: false }
+        App\Exception\RequestBodyConvertException: { code: 400, hidden: false }
+
 
 
 services:

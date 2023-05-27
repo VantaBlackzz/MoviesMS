@@ -2,74 +2,35 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\RequestDTO;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use App\Repository\MovieRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: MovieRepository::class)]
-class Movie
+class NewMovieRequest
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private ?int $id;
-
-    #[ORM\Column(length: 255, nullable: false)]
+    #[Assert\Type('string')]
+    #[Assert\NotBlank]
     private string $title;
 
-    #[ORM\Column(type: 'text', nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private string $description;
 
-    /**
-     * @var Collection<Genres>
-     */
-    #[ORM\ManyToMany(targetEntity: Genres::class)]
-    #[ORM\JoinTable(name: 'movie_to_genres')]
-    private Collection $genres;
-
-    #[ORM\Column(length: 255, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private string $tagline;
 
-    #[ORM\Column(type: 'integer', nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Type('int')]
     private int $year;
 
-    #[ORM\Column(type: 'float', nullable: false)]
+    #[Assert\NotNull]
+    #[Assert\Type('float')]
     private float $rating;
 
-    #[ORM\Column(type: 'integer', nullable: false)]
+    #[Assert\NotNull]
+    #[Assert\Type('int')]
     private int $duration;
-
-    public function __construct()
-    {
-        $this->genres = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return Collection<Genres>
-     */
-    public function getGenres(): Collection
-    {
-        return $this->genres;
-    }
-
-    /**
-     * @param Collection<Genres> $genres
-     * @return $this
-     */
-    public function setGenres(Collection $genres): self
-    {
-        $this->genres = $genres;
-
-        return $this;
-    }
 
     public function getTitle(): string
     {

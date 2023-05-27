@@ -2,10 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Movie;
-use App\Exception\MovieNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Movie;
 
 /**
  * @method Movie|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,14 +19,17 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
-    public function getMovieById(int $id): Movie
+    public function addMovie(Movie $movie): void
     {
-        $movie = $this->find($id);
+        $this->_em->persist($movie);
 
-        if (null === $movie) {
-            throw new MovieNotFoundException;
-        }
+        $this->_em->flush();
+    }
 
-        return $movie;
+    public function remove(Movie $movie): void
+    {
+        $this->_em->remove($movie);
+
+        $this->_em->flush();
     }
 }
