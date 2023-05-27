@@ -14,8 +14,9 @@ use App\Model\Genre;
 
 class GenresController extends AbstractController
 {
-    public function __construct(private readonly GenresService $genresService)
-    {
+    public function __construct(
+        private readonly GenresService $genresService
+    ) {
     }
 
     #[OA\Response(
