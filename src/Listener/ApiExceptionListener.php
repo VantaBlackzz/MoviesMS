@@ -15,13 +15,13 @@ use App\Model\ErrorDebugDetails;
 use App\Model\ErrorResponse;
 use Psr\Log\LoggerInterface;
 
-class ApiExceptionListener
+readonly class ApiExceptionListener
 {
     public function __construct(
-        private readonly ExceptionMappingResolver $resolver,
-        private readonly LoggerInterface $logger,
-        private readonly SerializerInterface $serializer,
-        private readonly bool $isDebug
+        private ExceptionMappingResolver $resolver,
+        private LoggerInterface $logger,
+        private SerializerInterface $serializer,
+        private bool $isDebug
     ) {
     }
 

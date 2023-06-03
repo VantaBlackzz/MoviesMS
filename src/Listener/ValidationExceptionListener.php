@@ -15,9 +15,9 @@ use App\Exception\ValidationException;
 use App\Model\ErrorValidationDetails;
 use App\Model\ErrorResponse;
 
-class ValidationExceptionListener
+readonly class ValidationExceptionListener
 {
-    public function __construct(private readonly SerializerInterface $serializer)
+    public function __construct(private SerializerInterface $serializer)
     {
     }
 

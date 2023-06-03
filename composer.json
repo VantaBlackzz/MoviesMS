@@ -79,8 +79,12 @@
         }
     },
     "require-dev": {
+        "helmich/phpunit-json-assert": "^3.5",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.6",
-        "symfony/maker-bundle": "^1.48"
+        "symfony/browser-kit": "6.2.*",
+        "symfony/css-selector": "6.2.*",
+        "symfony/maker-bundle": "^1.48",
+        "symfony/phpunit-bridge": "^6.3"
     }
 }

@@ -11,10 +11,10 @@ use App\RequestDTO\NewMovieRequest;
 use App\Mapper\MovieMapper;
 use App\Entity\Movie;
 
-class MovieService
+final readonly class MovieService
 {
     public function __construct(
-        private readonly MovieRepository $movieRepository
+        private MovieRepository $movieRepository
     ) {
     }
 
