@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Model\GenresList as GenreListModel;
 use App\Repository\GenresRepository;
-use App\Model\Genre as GenreModel;
 use App\Mapper\GenresMapper;
 use App\Entity\Genres;
 
@@ -20,11 +20,11 @@ readonly class GenresService
         return
             array_map(
                 function (Genres $genres) {
-                    $genresModel = new GenreModel();
+                    $genresListModel = new GenreListModel();
 
-                    GenresMapper::mapToModel($genres, $genresModel);
+                    GenresMapper::mapToModel($genres, $genresListModel);
 
-                    return $genresModel;
+                    return $genresListModel;
                 },
                 $this->genresRepository->findAll()
             );

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Mapper;
 
-use App\Model\Genre as GenreModel;
 use App\RequestDTO\NewMovieRequest;
+use App\Model\Genre as GenreModel;
 use App\Model\MovieDetails;
 use App\Entity\Genres;
 use App\Entity\Movie;
@@ -38,8 +38,8 @@ class MovieMapper
     {
         return $movie->getGenres()
             ->map(fn (Genres $genres) => new GenreModel(
-                $genres->getId(),
-                $genres->getName()
+                $genres->getName(),
+
             ))
             ->toArray();
     }

@@ -71,7 +71,7 @@ final class MoviesController extends AbstractController
     {
         $this->movieService->removeMovie($id);
 
-        return $this->json(null, Response::HTTP_NO_CONTENT);
+        return $this->json(data: null,status:  Response::HTTP_NO_CONTENT);
     }
 
     #[OA\Response(

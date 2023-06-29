@@ -6,27 +6,36 @@ namespace App\Model;
 
 class GenresList
 {
-    /**
-     * @var Genre[]
-     */
-    private array $genre;
+    private ?int $id;
 
-    /**
-     * @param Genre[] $genre
-     */
-    public function __construct(array $genre)
+    private ?string $name;
+
+    public function __construct(?int $id = null, ?string $name = null)
     {
-        $this->genre = $genre;
+        $this->id = $id;
+        $this->name = $name;
     }
 
-    public function getGenre(): array
+    public function getId(): int
     {
-        return $this->genre;
+        return $this->id;
     }
 
-    public function setGenre(array $genre): self
+    public function getName(): string
     {
-        $this->genre = $genre;
+        return $this->name;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

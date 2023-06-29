@@ -6,12 +6,13 @@ namespace App\Mapper;
 
 use App\Model\Genre as GenreModel;
 use App\Entity\Genres;
+use App\Model\GenresList as GenreListModel;
 
 class GenresMapper
 {
-    public static function mapToModel(Genres $genres, GenreModel $genresModel): void
+    public static function mapToModel(Genres $genres, GenreListModel $genresList): void
     {
-        $genresModel
+        $genresList
             ->setId($genres->getId())
             ->setName($genres->getName());
     }

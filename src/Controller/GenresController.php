@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\GenresList;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class GenresController extends AbstractController
         description: 'list of all genres',
         content: new OA\JsonContent(
             type: "array",
-            items: new OA\Items(ref: new Model(type: Genre::class))
+            items: new OA\Items(ref: new Model(type: GenresList::class))
         ),
     )]
     #[OA\Tag(name: 'Genres')]
