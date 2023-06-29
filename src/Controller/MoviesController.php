@@ -77,7 +77,10 @@ final class MoviesController extends AbstractController
     #[OA\Response(
         response: 200,
         description: 'retrieve all movies',
-        attachables: [new Model(type: MovieDetails::class)]
+        content: new OA\JsonContent(
+            type: "array",
+            items: new OA\Items(ref: new Model(type: MovieDetails::class))
+        )
     )]
     #[OA\Tag(name: 'Movie')]
     #[Route(path: 'api/v1/movies', methods: ['GET'])]

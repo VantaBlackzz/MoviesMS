@@ -8,8 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class NewMovieRequest
 {
-    #[Assert\Type('string')]
     #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private string $title;
 
     #[Assert\NotBlank]

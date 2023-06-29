@@ -22,7 +22,10 @@ class GenresController extends AbstractController
     #[OA\Response(
         response: 200,
         description: 'list of all genres',
-        attachables: [new Model(type: Genre::class)]
+        content: new OA\JsonContent(
+            type: "array",
+            items: new OA\Items(ref: new Model(type: Genre::class))
+        ),
     )]
     #[OA\Tag(name: 'Genres')]
     #[Route(path: 'api/v1/genres', methods: ['GET'])]

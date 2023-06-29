@@ -9,9 +9,9 @@ use App\Model\Genre as GenreModel;
 use App\Mapper\GenresMapper;
 use App\Entity\Genres;
 
-class GenresService
+readonly class GenresService
 {
-    public function __construct(private readonly GenresRepository $genresRepository)
+    public function __construct(private GenresRepository $genresRepository)
     {
     }
 
@@ -26,9 +26,7 @@ class GenresService
 
                     return $genresModel;
                 },
-
                 $this->genresRepository->findAll()
             );
-
     }
 }
